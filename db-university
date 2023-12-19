@@ -1,0 +1,111 @@
+CREATE TABLE departments(
+	id int NOT NULL AUTO_INCREMENT,
+	name varchar(100),
+	address varchar(255),
+	phone int(12),
+	email varchar(50),
+	website varchar(100),
+	head_of_department varchar(50),
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE `degrees`(
+	id int NOT NULL AUTO_INCREMENT,
+	department_id int NOT NULl ,
+	name varchar(255),
+	`level` int ,
+	address varchar(255),
+	email varchar(50),
+	website varchar(100),
+	PRIMARY KEY(id)
+);
+
+ALTER TABLE `degrees`
+ADD FOREIGN KEY (department_id) REFERENCES departments(id);
+
+
+CREATE TABLE students(
+	id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR (100),
+    surname VARCHAR (100),
+    date_of_birth DATE,
+    fiscal_code VARCHAR(20),
+    enrolment_date DATE,
+    registration_number INT,
+    email VARCHAR (50),
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE students 
+ADD COLUMN degree_id INT;
+
+ALTER TABLE students 
+ADD FOREIGN KEY (degree_id) REFERENCES `degrees`(id);
+
+
+INSERT INTO departments (name, address, phone, email, website, head_of_department)
+VALUES('Storia', 'Via Romorio, 35', 67954559, 'storia.department@gmail.com', 'www.dipartimento-storia.it', 'Carlo Crostini');
+
+DELETE FROM departments WHERE id = 6;
+
+
+INSERT INTO departments (name, address, phone, email, website, head_of_department)
+VALUES('Storia', 'Via Vicenza, 21', 333333363, 'storia.department@gmail.com', 'www.dipartimento-storia.it', 'Paolo Brosio');
+
+INSERT INTO departments (name, address, phone, email, website, head_of_department)
+VALUES('Matematica', 'Via Vicenza, 24', 433326733, 'matematica.department@gmail.com', 'www.dipartimento-matematica.it', 'Marco Polari');
+
+INSERT INTO departments (name, address, phone, email, website, head_of_department)
+VALUES('Fisica', 'Via Vicenza, 24', 443390333, 'fisica.department@gmail.com', 'www.dipartimento-fisica.it', 'Christopher Morali');
+
+
+UPDATE departments SET name='Fisica', address='Via Bologna, 45', phone= 39456789, email='www.dipartimento-fisica.it', website='www.dipartimento-fisica.it', head_of_department='Roberto Marangiolo' WHERE id=4;
+
+INSERT INTO departments (name, address, phone, email, website, head_of_department)
+VALUES('Economia', 'Via Sbirtolo, 32', 443347833, 'economia.department@gmail.com', 'www.dipartimento-economia.it', 'Daniele Pino');
+
+INSERT INTO departments (name, address, phone, email, website, head_of_department)
+VALUES('Francese', 'Via Crostatina, 24', 492433444, 'francese.department@gmail.com', 'www.dipartimento-francese.it', 'Alessandro Dodàro');
+
+
+INSERT INTO db_university_schema.degrees
+(name, address, `level`, email, website, department_id)
+VALUES('Matematica_algebra', 'Via Vicenza, 24', 32, 'matematica.department@gmail.com', 'www.dipartimento-matematica.it', 2);
+
+INSERT INTO db_university_schema.degrees
+(name, address, `level`, email, website, department_id)
+VALUES('Matematica_algebra2', 'Via Vicenza, 24', 33, 'matematica.department@gmail.com', 'www.dipartimento-matematica.it', 3);
+
+INSERT INTO db_university_schema.degrees
+(name, address, `level`, email, website, department_id)
+VALUES('Matematica_algebra3', 'Via Vicenza, 24', 34, 'matematica.department@gmail.com', 'www.dipartimento-matematica.it', 4);
+
+INSERT INTO db_university_schema.degrees
+(name, address, `level`, email, website, department_id)
+VALUES('Matematica_algebra4', 'Via Vicenza, 24', 35, 'matematica.department@gmail.com', 'www.dipartimento-matematica.it',5);
+
+INSERT INTO db_university_schema.degrees
+(name, address, `level`, email, website, department_id)
+VALUES('Matematica_algebra5', 'Via Vicenza, 24', 36, 'matematica.department@gmail.com', 'www.dipartimento-matematica.it', 7);
+
+
+
+INSERT INTO db_university_schema.students
+(name, surname, date_of_birth, fiscal_code, enrolment_date, registration_number, email, degree_id)
+VALUES('Mario', 'Minerva', '1977/05/05', 'MRMN450D2', '2017/09/16', 1369, 'mariominerva@gmail.com', 2);
+
+INSERT INTO db_university_schema.students
+(name, surname, date_of_birth, fiscal_code, enrolment_date, registration_number, email, degree_id)
+VALUES('Marco', 'Musella', '1994/12/12', 'MRMS340D30', '2018/02/12', 1452, 'marcomusone@libero.it', 3);
+
+INSERT INTO db_university_schema.students
+(name, surname, date_of_birth, fiscal_code, enrolment_date, registration_number, email, degree_id)
+VALUES('Vincenzo', 'Piromane', '1999/04/20', 'VNPR3409R', '2010/07/12', 1492, 'Vincenzoboom@libero.it', 4);
+
+INSERT INTO db_university_schema.students
+(name, surname, date_of_birth, fiscal_code, enrolment_date, registration_number, email, degree_id)
+VALUES('Carlo', 'Robiolini', '2002/12/08', 'CRRB45BNE04', '2013/04/14', 1490, 'carloilrobiolo@libero.it', 5);
+
+INSERT INTO db_university_schema.students
+(name, surname, date_of_birth, fiscal_code, enrolment_date, registration_number, email, degree_id)
+VALUES('Salvatore', 'Colpevole', '2000/02/25', 'SLCL45903E', '2019/03/12', 1499, 'salvailcolpevole@libero.it', 6);
